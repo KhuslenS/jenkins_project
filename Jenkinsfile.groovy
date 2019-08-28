@@ -1,16 +1,26 @@
 node {
+  stage("Update jenkins"){
+      properties([parameters([string(defaultValue: '18.195.31.232', description: 'Please provide IP', name: 'Environment', trim: true)])])
+  }
+  stage("Install git"){
+    sh "ssh ec2-user@${Environment} sudo yum install git -y"
+    sh "ssh ec2-user@${Environment} sudo yum install python3 -y"
+    sh "ssh ec2-user@${Environment} sudo yum install python3-pip"
+
+  }
   stage("Pull Repo"){
-    properties([parameters([string(defaultValue: '18.195.31.232', description: 'Please provide IP', name: 'Environment', trim: true)])])
-    git "https://github.com/miguelgrinberg/flask-examples.git"
+    sh "ssh ec2-user@${Environment} git clone https://github.com/miguelgrinberg/flask-examples.git"
   }
   stage("Install requirements"){
-    sh "virtualenv /tmp/venv"
-    sh ". /tmp/venv/bin/activate"
+    // sh "virtualenv /tmp/venv"
+    // sh ". /tmp/venv/bin/activate"
+    sh"echo Hello"
+
   }
   stage("Pip install"){
-    sh "pip install -r requirements.txt"
+    sh "ssh ec2-user@${Environment} sudo pip install -r ~/flask-examples/requirements.txt"
   }
   stage("Run App"){
-    sh " python /tmp/venv/01-hello-world/hello.py"
+    sh "ssh ec2-user@${Environment} sudo python ~/flask-examples/01-hello-world/hello.py"
   }
 }
