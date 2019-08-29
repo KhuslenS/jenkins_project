@@ -14,7 +14,7 @@ node {
   stage("Install requirements"){
     // sh "virtualenv /tmp/venv"
     // sh ". /tmp/venv/bin/activate"
-    sh"echo Hello"
+    sh"ssh ec2-user@${khuslen} echo Hello"
 
   }
   stage("Pip install"){
