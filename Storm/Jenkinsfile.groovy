@@ -22,6 +22,6 @@ node {
     sh "ssh ec2-user@${khuslen} sudo pip install -r /home/ec2-user/stormpath-flask-sample/requirements.txt"
   }
   stage("Run App"){
-    sh "ssh ec2-user@${khuslen} sudo python /home/ec2-user/stormpath-flask-sample/bootstrap.py"
+    sh "ssh ec2-user@${khuslen} sudo python /home/ec2-user/stormpath-flask-sample/app.py"
   }
 }
