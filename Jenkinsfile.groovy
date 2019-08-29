@@ -9,7 +9,7 @@ node {
 
   }
   stage("Existing Directory"){
-    sh "ssh ec2-user@${khuslen}" sudo rm -rf /home/ec2-user/flask-examples
+    sh "ssh ec2-user@${khuslen} sudo rm -rf /home/ec2-user/flask-examples"
   }
   stage("Pull Repo"){
     sh "ssh ec2-user@${khuslen} git clone https://github.com/miguelgrinberg/flask-examples.git"
