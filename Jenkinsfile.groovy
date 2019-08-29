@@ -8,13 +8,16 @@ node {
     sh "ssh ec2-user@${khuslen} sudo yum install python3-pip"
 
   }
+  stage("Existing Directory"){
+    sh "ssh ec2-user@${khuslen}" sudo rm -rf /home/ec2-user/flask-examples
+  }
   stage("Pull Repo"){
     sh "ssh ec2-user@${khuslen} git clone https://github.com/miguelgrinberg/flask-examples.git"
   }
   stage("Install requirements"){
     // sh "virtualenv /tmp/venv"
     // sh ". /tmp/venv/bin/activate"
-    sh"ssh ec2-user@${khuslen} echo Hello"
+    sh"echo Hello"
 
   }
   stage("Pip install"){
