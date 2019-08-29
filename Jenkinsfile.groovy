@@ -3,9 +3,7 @@ node {
       properties([parameters([string(defaultValue: '18.195.31.232', description: 'Please provide IP', name: 'khuslen', trim: true)])])
   }
   stage("Install git"){
-    sh "ssh ec2-user@${khuslen} sudo yum install git -y"
-    sh "ssh ec2-user@${khuslen} sudo yum install python3 -y"
-    sh "ssh ec2-user@${khuslen} sudo yum install python3-pip"
+    sh "ssh ec2-user@${khuslen} sudo yum install git python python-pip -y"
 
   }
   stage("Existing Directory"){
